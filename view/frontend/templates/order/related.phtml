@@ -1,0 +1,56 @@
+<?php
+
+use Lof\CheckoutSuccessPage\Block\Checkout\RelatedProduct;
+
+/** @var $block RelatedProduct */
+$sortRelated = $block->getRelatedSortOrder();
+
+?>
+<div class="related-product" style="order: <?=$sortRelated?>">
+    <?php
+    if ($block->isEnable()) {
+        echo $block->productWidget(); ?>
+        <script>
+            require([
+                'jquery',
+                'Lof_CheckoutSuccessPage/js/slick.min'
+            ], function ($, slick) {
+
+                $('.product-items').slick({
+                    dots: true,
+                    infinite: false,
+                    speed: 300,
+                    slidesToShow: 5,
+                    slidesToScroll: 4,
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: 4,
+                                slidesToScroll: 3,
+                                infinite: true,
+                                dots: true
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 2
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                        }
+                    ]
+                });
+            });
+        </script>
+        <?php
+    } ?>
+</div>
+

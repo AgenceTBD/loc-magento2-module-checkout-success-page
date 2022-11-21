@@ -1,0 +1,273 @@
+<?php
+
+use Lof\CheckoutSuccessPage\Block\Checkout\Details;
+
+/** @var $block Details */
+?>
+<?php
+$order = $block->getOrder();
+if ( ! $order->getData() ) {
+    return;
+}
+$payment           = $order->getPayment();
+$method            = $payment->getMethodInstance();
+$reorderurl        = $block->getReorder();
+$printurl          = $block->getPrint();
+$date              = $order->getCreatedAt();
+$formatdate        = $block->formatDate( $date );
+$canShowThumbnail  = $block->showProductThumbnail();
+$titleColor        = $block->getTitleColor();
+$titleBgColor      = $block->getTitleBgColor();
+$titleBorderColor  = $block->getTitleBorderColor();
+$messageColor      = $block->getMessageColor();
+$messageBgColor    = $block->getMessageBgColor();
+$couponColor       = $block->getCouponColor();
+$couponBgColor     = $block->getCouponBgColor();
+$couponBorderColor = $block->getCouponBorderColor();
+$sortOrderInfo     = $block->getOrderSortOrder();
+?>
+<div class="order-information" style="order: <?= $sortOrderInfo ?>">
+    <?php if ( $block->isEnable() ) : ?>
+        <div class="page-title-wrapper">
+            <h2 class="page-title">
+                <?php if ( $block->getCustomerId() ) : ?>
+                    <?= __(
+                        'Order %1',
+                        sprintf(
+                            '<a href="%s" class="order-number"><strong>#%s</strong></a>',
+                            $block->getReorder(),
+                            $order->getIncrementId()
+                        )
+                    ) ?>
+                <?php else : ?>
+                    <?= __( 'Order #%1', $order->getIncrementId() ) ?>
+                <?php endif; ?>
+            </h2>
+            <?php if ( $block->isEnableOrderStatusDetails() ): ?>
+                <span class="order-status"><?= $order->getStatusLabel(); ?></span>
+            <?php endif; ?>
+
+            <?= $block->getAdditionalInfoHtml() ?>
+            <div class="order-date">
+                <span class="label"><?= __( 'Order Date: ' ) ?></span> <span><date><?= $formatdate ?></date></span>
+            </div>
+
+            <div class="actions-order">
+                <?php if ( $block->canViewReorder() ): ?>
+                    <a class="action-reorder" href="<?= $block->escapeUrl( $reorderurl ) ?>">
+                        <button class="action primary">
+                            <span><?= __( 'Reorder' ) ?></span>
+                        </button>
+                    </a>
+                <?php endif ?>
+                <?php if ( $block->canViewPrint() ): ?>
+                    <a class="action-print" href="<?= $printurl ?>" onclick="this.target='_blank';">
+                        <button class="action primary">
+                            <span><?= __( 'Print Order' ) ?></span>
+                        </button>
+
+                    </a>
+                <?php endif ?>
+            </div>
+        </div>
+
+        <?php if ( $block->isEnableDetails() ): ?>
+            <div class="order-details">
+                <?php if ( $block->isEnableOrderProductDetails() ): ?>
+                    <div class="show-order table-wrapper">
+                        <div class="block-title">
+                            <strong><?= __( 'Order Details' ) ?></strong>
+                        </div>
+                        <table class="order-details-table data table">
+                            <thead>
+                            <tr>
+                                <th class="product col item"><?= __( 'Product' ) ?></th>
+                                <th class="col price"><?= __( 'Price' ) ?></th>
+                                <th class="col qty"><?= __( 'Qty' ) ?></th>
+                                <th class="col subtotal"><?= __( 'Subtotal' ) ?></th>
+                            </tr>
+                            </thead>
+                            <tbody class="order-item item">
+                            <?php
+                            $items = $order->getItemsCollection();
+                            foreach ( $items as $item ) : ?>
+                                <?php if ( $item->getParentItem() ) {
+                                    continue;
+                                } ?>
+                                <tr class="data-item">
+                                    <td class="product col item">
+                                        <?php if ( $canShowThumbnail ) : ?>
+                                            <div class="thumbnail">
+                                                <a href="<?= $block->getProductUrl( $item ); ?>"
+                                                   target="_blank">
+                                                    <img class="thumbnail"
+                                                         src="<?= $this->helper( 'Magento\Cms\Helper\Wysiwyg\Images' )->getBaseUrl() . 'catalog/product' . $item->getProduct()->getThumbnail(); ?>"
+                                                         alt="">
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+                                        <div class="product-name">
+                                            <div>
+                                                <strong>
+                                                    <a href="<?= $block->getProductUrl( $item ); ?>" target="_blank"><?= $block->escapeHtml( $item->getName() ) ?></a>
+                                                </strong>
+                                            </div>
+                                            <div>
+                                                <?php
+                                                $options = $block->getItemOptions( $item );
+                                                if ( $options ):
+                                                    foreach ( $options as $option ):
+                                                        ?>
+                                                        <strong><?= $option['label'] ?>: </strong>
+                                                        <span><?= $option['value'] ?></span>
+                                                        <br>
+                                                    <?php endforeach ?>
+                                                <?php endif ?>
+                                            </div>
+                                            <div>
+                                                <strong><?= $block->escapeHtml( __( 'SKU:' ) ) ?> </strong><?= $item->getSku(); ?>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col price" data-th="<?= $block->escapeHtmlAttr( __( 'Price' ) ) ?>"><?= $block->formatPrice( $item->getPrice(), true, false ); ?></td>
+                                    <td class="col qty" data-th="<?= $block->escapeHtmlAttr( __( 'QTY' ) ) ?>"><?= (int) $item->getQtyOrdered(); ?></td>
+                                    <td class="col subtotal" data-th="<?= $block->escapeHtmlAttr( __( 'Subtotal' ) ) ?>"><?= $block->formatPrice( $item->getRowTotal(), true, false ); ?></td>
+                                </tr>
+                                <?php
+                                $bundleChildrens = $item->getChildrenItems();
+                                $atts            = $block->getBundleItemOptions( $item );
+                                $attArray        = [];
+                                foreach ( $atts as $key => $att ) {
+                                    $attArray[ $att['option_id'] ] = $att;
+                                }
+                                ksort( $attArray );
+                                if ( $attArray ):
+                                    $sku = [];
+                                    $countSku = 0;
+                                    foreach ( $bundleChildrens as $key => $bundleChildren ) {
+                                        if ( $bundleChildren['sku'] ) {
+                                            $countSku++;
+                                        }
+                                        $sku[ $countSku ] = $bundleChildren['sku'];
+                                    }
+                                    $count = 0;
+                                    foreach ( $attArray as $att ):
+                                        ?>
+                                        <tr>
+                                            <td colspan="6"><?= $att['label'] ?></td>
+                                        </tr>
+                                        <?php foreach ( $att['value'] as $at ): $count++ ?>
+                                        <tr class="bundle-option">
+                                            <td><?= $at['qty'] . ' x ' . $at['title'] . ' x ' . $block->formatPrice( $at['price'] ) ?></td>
+                                            <td><?= $sku[ $count ]; ?></td>
+                                            <td><?= __( 'Ordered: ' ) . $at['qty'] * $item->getQtyOrdered(); ?></td>
+                                        </tr>
+                                    <?php endforeach ?>
+                                    <?php endforeach ?>
+                                <?php endif ?>
+                            <?php endforeach ?>
+                            </tbody>
+                            <tfoot>
+                            <tr class="data-item total">
+                                <td class="order-total-label" colspan="3">
+                                    <div class="order-total-info">
+                                        <div><span class="label"><?= __( 'Subtotal: ' ) ?></span></div>
+                                        <div><span class="label"><?= __( 'Shipping: ' ) ?></span></div>
+                                        <div><span class="label"><?= __( 'Taxes: ' ) ?></span></div>
+                                        <div><strong class="label"><?= __( 'Total: ' ) ?></strong></div>
+                                    </div>
+                                </td>
+                                <td class="order-total-value">
+                                    <div class="order-total-info">
+                                        <div><span class="value"><?= $block->formatPrice( $order->getSubtotal() ); ?></span></div>
+                                        <div><span class="value"><?= $block->formatPrice( $order->getShippingAmount() ); ?></span></div>
+                                        <div><span class="value"><?= $block->formatPrice( $order->getTaxAmount() ); ?></span></div>
+                                        <div><strong class="value"><?= $block->formatPrice( $order->getGrandTotal() ); ?></strong></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                <?php endif ?>
+
+                <div class="info">
+                    <div class="block-title">
+                        <strong><?= __( 'Order Information' ) ?></strong>
+                    </div>
+
+                    <div class="block-content">
+                        <?php if ( $block->isEnableShippingAddressDetails() ): ?>
+                            <div class="box box-order-shipping-address">
+                                <strong class="box-title"><span><?= __( 'Shipping Address' ) ?></span></strong>
+                                <div class="box-content">
+                                    <?php $formatship = $block->formatShipping(); ?>
+                                    <?php if ( $formatship ) : ?>
+                                        <address><?= $formatship; ?></address>
+                                    <?php else: ?>
+                                        <?= __( 'No shipping Address available' ); ?>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ( $block->isEnableShippingMethodDetails() ): ?>
+                            <div class="box box-order-shipping-method">
+                                <strong class="box-title">
+                                    <span><?= __( 'Shipping Method' ) ?></span>
+                                </strong>
+                                <?php $shippingMethod = $order->getShippingDescription(); ?>
+                                <div class="box-content">
+                                    <?php if ( $order->getShippingDescription() ): ?>
+                                        <?= $shippingMethod; ?>
+                                    <?php else: ?>
+                                        <?= __( 'No shipping information available' ); ?>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ( $block->isEnableBillingAddressDetails() ): ?>
+                            <div class="box box-order-billing-address">
+                                <strong class="box-title">
+                                    <span><?= __( 'Billing Address' ) ?></span>
+                                </strong>
+                                <?php $formatbilling = $block->formatBilling(); ?>
+                                <div class="box-content">
+                                    <address><?= $formatbilling; ?></address>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ( $block->isEnablePaymentMethodDetails() ): ?>
+                        <div class="box box-order-billing-method">
+                            <strong class="box-title">
+                                <span><?= __( 'Payment Method' ) ?></span>
+                            </strong>
+                            <?php $methodTitle = $method->getTitle(); ?>
+                            <div class="box-content">
+                                <?= $methodTitle ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+        <style>
+            .lof_checkout_success_page thead {
+                border-bottom: 1px solid <?= $titleBorderColor ?>;
+                background-color: <?= $titleBgColor?>;
+                color: <?= $titleColor?>;
+            }
+
+            .checkout-success-message {
+                color: <?= $messageColor?>;
+                background-color: <?= $messageBgColor?>;
+            }
+
+            .lof_checkout_success_page .coupon {
+                color: <?= $couponColor?>;
+                background-color: <?= $couponBgColor?>;
+                border-color: <?= $couponBorderColor?>;
+            }
+        </style>
+    <?php endif; ?>
+</div>

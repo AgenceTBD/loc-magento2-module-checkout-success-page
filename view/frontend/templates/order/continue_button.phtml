@@ -1,0 +1,13 @@
+<?php
+use Lof\CheckoutSuccessPage\Block\Checkout\Details;
+
+/** @var $block Details */
+$sortContinue = $block->getContinueSortOrder();
+
+?>
+
+<div class="actions-toolbar" style="order: <?= $sortContinue?>">
+    <a href="<?php echo $block->getUrl() ?>">
+        <button class="action primary continue"><span><?php echo __('Continue Shopping') ?></span></button>
+    </a>
+</div>

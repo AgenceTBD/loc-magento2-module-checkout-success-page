@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <success_page>
+            <general>
+                <enabled>1</enabled>
+            </general>
+            <thanks_message>
+                <enabled>1</enabled>
+                <message>Thank you for your purchase!</message>
+                <back_ground_image/>
+            </thanks_message>
+            <order_info>
+                <enabled>1</enabled>
+                <show_order_details>1</show_order_details>
+                <show_detail_address>1</show_detail_address>
+                <show_shipping_methods>1</show_shipping_methods>
+                <show_billing_address>1</show_billing_address>
+                <show_payment_methods>1</show_payment_methods>
+                <show_order_status>1</show_order_status>
+                <show_product_thumbnail>1</show_product_thumbnail>
+                <show_reorder_button>1</show_reorder_button>
+                <show_print_button>1</show_print_button>
+                <sort_order>1</sort_order>
+            </order_info>
+            <coupon_code>
+                <enabled>1</enabled>
+                <sort_order>4</sort_order>
+                <enable_customer_group>0,1</enable_customer_group>
+                <description>Coupon code</description>
+                <use_coupon_code>1</use_coupon_code>
+                <background_image/>
+            </coupon_code>
+            <subscript>
+                <newsletter_subscription>1</newsletter_subscription>
+                <sort_order>6</sort_order>
+            </subscript>
+            <block>
+                <enabled_cms_block>0</enabled_cms_block>
+                <cms_block>1</cms_block>
+                <sort_order_cms_block>2</sort_order_cms_block>
+                <enable_custom_block>1</enable_custom_block>
+                <custom_block/>
+                <sort_order_custom_block>3</sort_order_custom_block>
+            </block>
+            <frontend_preview>
+                <order_number>000000001</order_number>
+                <preview/>
+            </frontend_preview>
+            <continue_button>
+                <enabled>1</enabled>
+                <sort_order>7</sort_order>
+            </continue_button>
+            <related>
+                <enabled>1</enabled>
+                <sort_order>5</sort_order>
+                <number_of_products>10</number_of_products>
+                <related_title>You may also like</related_title>
+            </related>
+            <custom_style>
+                <title_background_color>#ffffff</title_background_color>
+                <title_text_color>#333333</title_text_color>
+                <title_border_color>#ffffff</title_border_color>
+                <message_color>#333333</message_color>
+                <message_bg_color>#ffffff</message_bg_color>
+                <coupon_code_text_color>#333333</coupon_code_text_color>
+                <coupon_code_bg_color>#ffffff</coupon_code_bg_color>
+                <coupon_code_border_color>#333333</coupon_code_border_color>
+            </custom_style>
+        </success_page>
+    </default>
+</config>

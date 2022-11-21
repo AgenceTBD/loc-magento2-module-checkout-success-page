@@ -1,0 +1,72 @@
+<?php
+/**
+ * @var $block Lof\CheckoutSuccessPage\Block\Adminhtml\System\Config\Preview
+ */
+
+?>
+
+<div style="text-align: center; margin: 20px">
+    <button type="button" id="new-window"><?= __('Save Config & Preview') ?></button>
+</div>
+
+<div data-role="iframe-preview-panel" data-mage-init='{"loader": {"template":"<div data-role=\"spinner\" style=\"text-align: center\"><div class=\"spinner\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>"}}'">
+<iframe  width="100%" height="1400" style="display: none" frameBorder="0" ></iframe>
+</div>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/alert'
+    ], function ($, alert) {
+
+        var $iframe = $('[data-role="iframe-preview-panel"] iframe');
+        var $iframePreviewPanel = $('[data-role="iframe-preview-panel"]');
+        var urlTemplate = '<?= $block->getSuccessPageUrl() ?>';
+        $('#new-window').on('click', function(){
+
+            $('body').trigger('processStart');
+            $iframePreviewPanel.css({ "min-height": "0px" });
+            $iframe.hide();
+
+            saveConfig(function(url){
+                var url = '<?= $block->getPreviewUrl() ?>';
+                if(url){
+                    window.open(url);
+                }
+
+                $('body').trigger('processStop');
+            });
+
+        });
+
+
+        saveConfig = function(processCallback){
+            if (configForm.validation('isValid')) {
+                $.ajax({
+                    method: 'POST',
+                    url: configForm.attr('action'),
+                    data: configForm.serialize(),
+                    context: this
+                }).done(function (response) {
+                    if (typeof response === 'object') {
+                        if (response.error) {
+                            alert({ title: 'Error', content: response.message });
+                        } else if (response.ajaxExpired) {
+                            window.location.href = response.ajaxRedirect;
+                        }
+                    } else {
+                        var url = null;
+                        processCallback(url);
+                    }
+                });
+
+                return true;
+            } else {
+                return false;
+            }
+        };
+
+
+
+    });
+</script>

@@ -1,0 +1,25 @@
+{
+    "name": "landofcoder/module-checkout-success-page",
+    "description": "Magento 2 Checkout Success Page is here to help you ensure a happy checkout and top-notch customer experience through and through. Create a highly-converting and interactive thank you page that hits two birds with one stone: improve customer satisfaction and extend the order value.",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "homepage": "https://landofcoder.com/magento-2-checkout-success-page.html",
+    "authors": [
+        {
+            "name": "Landofcoder",
+            "email": "info@landofcoder.com",
+            "homepage": "https://landofcoder.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "version": "1.0.0",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Lof\\CheckoutSuccessPage\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+<?php
+/**
+ * @var $block Lof\CheckoutSuccessPage\Block\Checkout\SortOrderBlock
+ */
+$enableCoupon      = $block->isEnableCouponCode();
+$enableCmsBlock    = $block->isEnableCmsBlock();
+$enableCustomBlock = $block->isEnableCustomBlock();
+$cmsBlock          = $block->getCmsFilterContent( $block->getCmsHtml() );
+$couponCode        = $block->getCouponCode();
+$couponName        = $block->getCouponName();
+$couponDes         = $block->getCouponDescription();
+$customBlock       = $block->getCmsFilterContent( $this->getCustomBlock() );
+$couponLabel       = $block->getCouponCodeLabel();
+$sortCmsBlock      = $block->getCmsBlockSortOrder();
+$sortCustomBlock   = $block->getCustomBlockSortOrder();
+$sortCoupon        = $block->getCouponSortOrder();
+$sortSubscript     = $block->getSubscriptSortOrder();
+?>
+<style>
+    .lof_checkout_success_page .block.newsletter {
+        order: <?= $sortSubscript?>;
+    }
+</style>
+<?php if ( $enableCmsBlock ): ?>
+    <div class="cms-block sort-block" style="order: <?= $sortCmsBlock ?>">
+        <div><?= $cmsBlock ?></div>
+    </div>
+<?php endif; ?>
+
+<?php if ( $enableCustomBlock && $customBlock ): ?>
+    <div class="custom-block sort-block" style="order: <?= $sortCustomBlock ?>">
+        <div><?= $customBlock ?></div>
+    </div>
+<?php endif; ?>
+
+<?php if ( $enableCoupon && $couponCode ): ?>
+    <div class="coupon sort-block" style="order: <?= $sortCoupon; ?>">
+        <div class="coupon-content">
+            <span><?= $block->escapeHtml( $couponName ) ?></span><br>
+            <span><?= $block->escapeHtml( $couponDes ) ?></span><br>
+            <span><?= $block->escapeHtml( $couponLabel ) . ': ' ?></span><strong><?= $block->escapeHtml( $couponCode ) ?></strong>
+        </div>
+    </div>
+<?php endif; ?>

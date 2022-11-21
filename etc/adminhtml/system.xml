@@ -1,0 +1,286 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="landofcoder" sortOrder="999" translate="label">
+            <label>Landofcoder</label>
+        </tab>
+        <section id="success_page" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+            <label>Custom Checkout Success Page</label>
+            <tab>landofcoder</tab>
+            <resource>Lof_CheckoutSuccessPage::config_lof_checkoutsuccesspage</resource>
+            <group id="general" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>General</label>
+                <field id="enabled" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="thanks_message" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Thank You Message</label>
+                <field id="enabled" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="message" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Message</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="order_info" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Order Information</label>
+                <field id="enabled" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_order_details" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Show Order Details</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_product_thumbnail" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Show Product Thumbnail</label>
+                    <depends>
+                        <field id="*/*/show_order_details">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_order_status" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Show Order Status</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="show_detail_address" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Show Shipping Address Details</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_shipping_methods" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Show Shipping Methods Details</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_billing_address" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Show Billing Address Details</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_payment_methods" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Show Payment Methods Details</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_reorder_button" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Show Reorder Button</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_print_button" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Show Print Button</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sort_order" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Sort Order</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <validate>required-entry validate-number</validate>
+                </field>
+            </group>
+            <group id="coupon_code" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Coupon Code</label>
+                <field id="enabled" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sort_order" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Sort Order</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <validate>required-entry validate-number</validate>
+                </field>
+                <field id="enable_customer_group" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="multiselect">
+                    <label>Enable Customer Group</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <source_model>Lof\CheckoutSuccessPage\Model\Config\Source\EnableCustomerGroup</source_model>
+                </field>
+                <field id="description" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Description</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="use_coupon_code" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Use Coupon Code</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <source_model>Lof\CheckoutSuccessPage\Model\Config\Source\CouponCode</source_model>
+                </field>
+            </group>
+            <group id="subscript" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Subscript</label>
+                <field id="newsletter_subscription" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Newsletter Subscription</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sort_order" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Sort Order</label>
+                    <validate>required-entry validate-number</validate>
+                    <depends>
+                        <field id="*/*/newsletter_subscription">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="related" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Related Products</label>
+                <field id="enabled" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sort_order" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Sort Order</label>
+                    <validate>required-entry validate-number</validate>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="number_of_products" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Number of Related Products</label>
+                    <validate>required-entry validate-number</validate>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="related_title" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Title</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="block" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Block</label>
+                <field id="enabled_cms_block" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Enabled CMS Block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cms_block" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>CMS Block</label>
+                    <depends>
+                        <field id="*/*/enabled_cms_block">1</field>
+                    </depends>
+                    <source_model>Lof\CheckoutSuccessPage\Model\Config\Source\Block</source_model>
+                </field>
+                <field id="sort_order_cms_block" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Sort Order CMS Block</label>
+                    <validate>required-entry validate-number</validate>
+                    <depends>
+                        <field id="*/*/enabled_cms_block">1</field>
+                    </depends>
+                </field>
+                <field id="enable_custom_block" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Enable Custom Block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="custom_block" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="editor">
+                    <label>Custom Block</label>
+                    <depends>
+                        <field id="*/*/enable_custom_block">1</field>
+                    </depends>
+                    <frontend_model>Lof\CheckoutSuccessPage\Block\Adminhtml\System\Config\Editor</frontend_model>
+                </field>
+                <field id="sort_order_custom_block" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Sort Order Custom Block</label>
+                    <validate>required-entry validate-number</validate>
+                    <depends>
+                        <field id="*/*/enable_custom_block">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="continue_button" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Show Continue Button</label>
+                <field id="enabled" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sort_order" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Sort Order</label>
+                    <validate>required-entry validate-number</validate>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="custom_style" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Custom Style</label>
+                <field id="title_background_color" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Title Background Color</label>
+                    <frontend_model>Lof\CheckoutSuccessPage\Block\Adminhtml\System\Config\Color</frontend_model>
+                </field>
+                <field id="title_text_color" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Title Text Color</label>
+                    <frontend_model>Lof\CheckoutSuccessPage\Block\Adminhtml\System\Config\Color</frontend_model>
+                </field>
+                <field id="title_border_color" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Title Border Color</label>
+                    <frontend_model>Lof\CheckoutSuccessPage\Block\Adminhtml\System\Config\Color</frontend_model>
+                </field>
+                <field id="message_color" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Message Text Color</label>
+                    <comment/>
+                    <frontend_model>Lof\CheckoutSuccessPage\Block\Adminhtml\System\Config\Color</frontend_model>
+                </field>
+                <field id="message_bg_color" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Message Background Color</label>
+                    <frontend_model>Lof\CheckoutSuccessPage\Block\Adminhtml\System\Config\Color</frontend_model>
+                </field>
+                <field id="coupon_code_text_color" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Coupon Code Text Color</label>
+                    <frontend_model>Lof\CheckoutSuccessPage\Block\Adminhtml\System\Config\Color</frontend_model>
+                </field>
+                <field id="coupon_code_bg_color" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Coupon Code Background Color</label>
+                    <frontend_model>Lof\CheckoutSuccessPage\Block\Adminhtml\System\Config\Color</frontend_model>
+                </field>
+                <field id="coupon_code_border_color" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Coupon Code Border Color</label>
+                    <frontend_model>Lof\CheckoutSuccessPage\Block\Adminhtml\System\Config\Color</frontend_model>
+                </field>
+            </group>
+            <group id="frontend_preview" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="100" translate="label">
+                <label>Preview</label>
+                <field id="order_number" showInDefault="1" showInStore="1" canRestore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Order Number</label>
+                    <attribute type="disabled">1</attribute>
+                </field>
+                <field id="preview" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Preview</label>
+                    <frontend_model>Lof\CheckoutSuccessPage\Block\Adminhtml\System\Config\Preview</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

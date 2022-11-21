@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Lof_CheckoutSuccessPage::css/slick.css"/>
+        <css src="Lof_CheckoutSuccessPage::css/slick-theme.css"/>
+        <css src="Lof_CheckoutSuccessPage::css/checkoutsuccess.css"/>
+    </head>
+    <body>
+        <container name="order.success.additional.info" label="Order Success Additional Info"/>
+        <referenceContainer name="content">
+            <block class="Lof\CheckoutSuccessPage\Block\Checkout\SuccessPage" name="lof_checkout_success"
+                   template="Lof_CheckoutSuccessPage::success.phtml"
+                   cacheable="false" ifconfig="success_page/general/enabled">
+
+                <block class="Lof\CheckoutSuccessPage\Block\Checkout\Thanks" name="checkout.message.thanks"
+                       template="Lof_CheckoutSuccessPage::order/thanks.phtml"
+                       cacheable="false"/>
+
+                <block class="Lof\CheckoutSuccessPage\Block\Checkout\Details" name="checkout.order.detail"
+                       template="Lof_CheckoutSuccessPage::order/order_details.phtml"
+                       before="checkout.sort.order"
+                       ifconfig="success_page/order_info/enabled"
+                       cacheable="false"/>
+
+                <block class="Lof\CheckoutSuccessPage\Block\Checkout\SortOrderBlock" name="checkout.sort.order"
+                       template="Lof_CheckoutSuccessPage::order/blocks.phtml"
+                       after="checkout.message.thanks"
+                       cacheable="false"/>
+
+                <block class="Lof\CheckoutSuccessPage\Block\Checkout\Details" name="checkout.continue.button"
+                       template="Lof_CheckoutSuccessPage::order/continue_button.phtml" after="-"
+                       cacheable="false"/>
+
+                <block class="Magento\Newsletter\Block\Subscribe" name="form.subscribe"  after="-"
+                       template="subscribe.phtml" cacheable="false"
+                       ifconfig="success_page/subscript/newsletter_subscription"/>
+
+                <block class="Lof\CheckoutSuccessPage\Block\Checkout\RelatedProduct" name="lof.product.related"
+                       template="Lof_CheckoutSuccessPage::order/related.phtml"
+                       cacheable="false" />
+            </block>
+        </referenceContainer>
+    </body>
+</page>

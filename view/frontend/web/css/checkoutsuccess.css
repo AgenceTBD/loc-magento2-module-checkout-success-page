@@ -1,0 +1,204 @@
+
+.thankyou-message {
+    text-align: center;
+}
+
+.lof_checkout_success_page .coupon {
+    text-align: center;
+    border: 1px solid #cccccc;
+}
+
+.lof_checkout_success_page .text-under {
+    float: right;
+}
+
+.lof_checkout_success_page .show-order {
+    margin-top: 20px;
+}
+
+.lof_checkout_success_page .show-order tr {
+    border-bottom: 1px solid #cccccc;
+}
+
+.lof_checkout_success_page .thumbnail {
+    height: 100px;
+}
+
+.lof_checkout_success_page .reorderurl {
+    margin-bottom: 5px;
+    float: right;
+}
+
+.lof_checkout_success_page > div {
+    margin-bottom: 10px;
+}
+
+.lof_checkout_success_page .coupon , .checkout-success-message{
+    padding: 10px 0;
+}
+
+.lof_checkout_success_page .products-grid.grid {
+    padding: 15px 0;
+}
+
+.lof_checkout_success_page .slick-track {
+    padding-top: 15px;
+    padding-bottom: 50px;
+}
+
+.page-layout-1column .lof_checkout_success_page .block.widget .products-grid .product-item {
+    margin-left: 0 !important;
+    padding: 0 20px;
+}
+
+.lof_checkout_success_page {
+    display: flex;
+    flex-flow: column;
+}
+
+.cart > .item {
+    border-bottom: 1px solid #cccccc;
+    position: relative;
+}
+
+.products-grid.grid button.slick-arrow {
+    background-color: transparent;
+}
+
+.slick-prev:before, .slick-next:before {
+    color: #333333;
+}
+
+.order-details .product {
+    overflow: hidden;
+}
+
+.order-details .product:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.order-details .thumbnail {
+    float: left;
+    margin-right: 15px;
+}
+
+.order-details .product-name {
+    float: left;
+}
+
+.order-total-label {
+    text-align: right;
+}
+
+.order-total-info {
+    display: inline-block;
+}
+
+.lof_checkout_success_page .order-date {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.lof_checkout_success_page .order-date .label {
+    display: none;
+}
+
+.lof_checkout_success_page .page-title-wrapper {
+    position: relative;
+}
+
+.lof_checkout_success_page .page-title {
+    display: inline-block;
+    font-size: 28px;
+    margin-bottom: 15px;
+    margin-top: 0;
+    margin-right: 15px;
+}
+
+.lof_checkout_success_page .actions-order {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.lof_checkout_success_page .block-title {
+    border-bottom: 1px solid #c6c6c6;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+}
+
+.lof_checkout_success_page .block-title strong {
+    font-size: 2.2rem;
+    font-weight: 300;
+}
+
+.lof_checkout_success_page .page-title-wrapper,
+.lof_checkout_success_page .show-order,
+.lof_checkout_success_page .info,
+.lof_checkout_success_page .coupon.sort-block {
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.order-details-table {
+    border: 1px solid #cccccc;
+}
+
+@media only screen and (max-width: 639px) {
+    .order-details .table-wrapper .col.qty,
+    .order-details .table-wrapper .col.price,
+    .order-details .table-wrapper .col.subtotal,
+    .order-details .table-wrapper .col.msrp {
+        box-sizing: border-box;
+        display: block;
+        float: left;
+        white-space: nowrap;
+        width: 33%;
+        border-bottom: none !important;
+    }
+
+    .order-details .table-wrapper .col.qty[data-th]:before,
+    .order-details .table-wrapper .col.price[data-th]:before,
+    .order-details .table-wrapper .col.subtotal[data-th]:before,
+    .order-details .table-wrapper .col.msrp[data-th]:before {
+        content: attr(data-th) !important;
+        display: block !important;
+        font-weight: 600 !important;
+        padding-bottom: 10px;
+    }
+
+    .order-details .table-wrapper .data-item {
+        overflow: hidden;
+    }
+
+    .lof_checkout_success_page .block-content:not(.widget) .box {
+        margin-bottom: 20px;
+    }
+
+    .lof_checkout_success_page .actions-order {
+        position: relative;
+    }
+}
+
+@media (min-width: 768px) {
+    .lof_checkout_success_page .block-content:not(.widget) .box {
+        clear: none;
+        float: left;
+        width: 25%;
+    }
+
+    .lof_checkout_success_page .page-title {
+        font-size: 36px;
+    }
+}
+
+.lof_checkout_success_page .block-content:not(.widget) .box .box-title {
+    display: inline-block;
+    margin: 0 0 10px;
+}
+
+.lof_checkout_success_page .block-content:not(.widget) .box .box-title > span {
+    font-size: 1.6rem;
+}
